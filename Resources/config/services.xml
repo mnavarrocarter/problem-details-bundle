@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="MNC\Bundle\ProblemDetailsBundle\EventSubscriber\ApiExceptionSubscriber" public="false">
+            <argument id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\ChainExceptionNormalizer" type="service"/>
+            <argument key="$env">%kernel.environment%%</argument>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\HttpExceptionNormalizer">
+        </service>
+        <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\AuthExceptionNormalizer">
+        </service>
+        <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\DriverExceptionNormalizer">
+        </service>
+        <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\PhpExceptionNormalizer">
+        </service>
+        <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\ChainExceptionNormalizer">
+        </service>
+    </services>
+</container>
