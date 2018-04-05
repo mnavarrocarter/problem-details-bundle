@@ -6,7 +6,7 @@
     <services>
         <service id="MNC\Bundle\ProblemDetailsBundle\EventSubscriber\ApiExceptionSubscriber" public="false">
             <argument id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\ChainExceptionNormalizer" type="service"/>
-            <argument key="$env">%kernel.environment%%</argument>
+            <argument>%kernel.environment%</argument>
             <tag name="kernel.event_subscriber"/>
         </service>
         <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\HttpExceptionNormalizer">
