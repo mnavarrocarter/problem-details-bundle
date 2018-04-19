@@ -17,7 +17,6 @@ use Symfony\Component\DependencyInjection\Loader;
 
 /**
  * This is the class that loads and manages your bundle configuration.
- *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
 class MNCProblemDetailsExtension extends Extension
@@ -39,28 +38,31 @@ class MNCProblemDetailsExtension extends Extension
         $subscriberDef = $container->getDefinition(ApiExceptionSubscriber::class);
         $subscriberDef->addArgument($config['exception_normalizer']['normalize_in_dev']);
 
+        // Normalizers configuration
         $references = [];
-        if ($config['exception_normalizer']['normalize_symfony_http'] === true) {
+        if ($config['exception_normalizer']['normalizers']['symfony_http'] === true) {
             $references[] = new Reference(HttpExceptionNormalizer::class);
         }
-        if ($config['exception_normalizer']['normalize_symfony_auth'] === true) {
+
+        if ($config['exception_normalizer']['normalizers']['symfony_auth'] === true) {
             if (!class_exists(self::SYMFONY_AUTH)) {
                 throw new LogicException(sprintf('Cannot normalize Symfony Auth exceptions because class %s does not exist. You must install symfony/security-bundle.', self::SYMFONY_AUTH));
             }
             $references[] = new Reference(AuthExceptionNormalizer::class);
         }
-        if ($config['exception_normalizer']['normalize_doctrine'] === true) {
+
+        if ($config['exception_normalizer']['normalizers']['doctrine'] === true) {
             if (!class_exists(self::DOCTRINE)) {
                 throw new LogicException(sprintf('Cannot normalize Doctrine Exceptions because class %s does not exist. You must install doctrine/doctrine-bundle.', self::DOCTRINE));
             }
             $references[] = new Reference(DriverExceptionNormalizer::class);
         }
-        if ($config['exception_normalizer']['normalize_php'] === true) {
+
+        if ($config['exception_normalizer']['normalizers']['php'] === true) {
             $references[] = new Reference(PhpExceptionNormalizer::class);
         }
 
         $chainNormalizerDef = $container->getDefinition(ChainExceptionNormalizer::class);
         $chainNormalizerDef->addArgument($references);
-
     }
 }

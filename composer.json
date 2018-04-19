@@ -17,5 +17,8 @@
         "php": "^7.1.3",
         "symfony/framework-bundle": "^4.0",
         "mnavarrocarter/problem-details": "^0.1"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^4.0"
     }
 }

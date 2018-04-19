@@ -3,7 +3,7 @@
 namespace MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer;
 
 use MNC\ProblemDetails\ApiException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 /**
  * Class SymfonyHttpExceptionNormalizer
@@ -16,9 +16,9 @@ class HttpExceptionNormalizer implements ExceptionNormalizerInterface
      * @param \Exception $exception
      * @return array
      */
-    public function normalize(\Exception $exception): ?array
+    public function normalize(\Exception $exception): array
     {
-        if (!$exception instanceof HttpException) {
+        if (!$exception instanceof HttpExceptionInterface) {
             return null;
         }
 

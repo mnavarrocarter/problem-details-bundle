@@ -50,21 +50,23 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exeption = $event->getException();
+
         if ($exeption instanceof ApiExceptionInterface) {
             $event->setResponse($this->createResponseFromApiException($exeption));
-            $event->stopPropagation();
             return $event;
         }
 
-        if ($this->env === 'dev' AND $this->normalizeInDev === true) {
-            $data = $this->normalizer->normalize($exeption);
-            if ($data !== null) {
-                $response = JsonResponse::create($data, $data['status'], [
-                    'Content-Type' => self::CONTENT_TYPE
-                ]);
-                $event->setResponse($response);
-                $event->stopPropagation();
-            }
+        if ($this->env === 'dev' AND $this->normalizeInDev === false) {
+           return $event;
+        }
+
+        $data = $this->normalizer->normalize($exeption);
+
+        if ($data !== null) {
+            $response = JsonResponse::create($data, $data['status'], [
+                'Content-Type' => self::CONTENT_TYPE
+            ]);
+            $event->setResponse($response);
         }
 
         return $event;
