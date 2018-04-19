@@ -20,5 +20,10 @@
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^4.0"
+    },
+    "scripts": {
+        "test": [
+            "SYMFONY_PHPUNIT_VERSION=6.5 vendor/bin/simple-phpunit"
+        ]
     }
 }
