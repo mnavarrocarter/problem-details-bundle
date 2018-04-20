@@ -1,6 +1,7 @@
 <?php
 
 namespace MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer;
+
 use MNC\ProblemDetails\ApiException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 

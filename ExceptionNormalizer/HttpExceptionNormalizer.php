@@ -16,7 +16,7 @@ class HttpExceptionNormalizer implements ExceptionNormalizerInterface
      * @param \Exception $exception
      * @return array
      */
-    public function normalize(\Exception $exception): array
+    public function normalize(\Exception $exception): ?array
     {
         if (!$exception instanceof HttpExceptionInterface) {
             return null;
