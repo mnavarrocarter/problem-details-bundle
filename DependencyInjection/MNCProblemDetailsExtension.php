@@ -6,6 +6,7 @@ use MNC\Bundle\ProblemDetailsBundle\EventSubscriber\ApiExceptionSubscriber;
 use MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\AuthExceptionNormalizer;
 use MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\ChainExceptionNormalizer;
 use MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\DriverExceptionNormalizer;
+use MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\FormValidationExceptionNormalizer;
 use MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\HttpExceptionNormalizer;
 use MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\PhpExceptionNormalizer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -40,6 +41,11 @@ class MNCProblemDetailsExtension extends Extension
 
         // Normalizers configuration
         $references = [];
+
+        if ($config['exception_normalizer']['normalizers']['form'] === true) {
+            $references[] = new Reference(FormValidationExceptionNormalizer::class);
+        }
+
         if ($config['exception_normalizer']['normalizers']['symfony_http'] === true) {
             $references[] = new Reference(HttpExceptionNormalizer::class);
         }
