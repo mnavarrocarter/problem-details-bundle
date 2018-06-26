@@ -27,7 +27,7 @@ class FormValidationExceptionNormalizer implements ExceptionNormalizerInterface
         ];
     }
 
-    private function convertFormToArray($getForm)
+    private function convertFormToArray($data)
     {
         $form = $errors = [];
         foreach ($data->getErrors() as $error) {
