@@ -19,5 +19,7 @@
         </service>
         <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\ChainExceptionNormalizer">
         </service>
+        <service id="MNC\Bundle\ProblemDetailsBundle\ExceptionNormalizer\FormValidationExceptionNormalizer">
+        </service>
     </services>
 </container>
