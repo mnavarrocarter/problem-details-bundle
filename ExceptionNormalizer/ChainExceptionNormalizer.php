@@ -31,5 +31,6 @@ class ChainExceptionNormalizer implements ExceptionNormalizerInterface
                 return $array;
             }
         }
+        return null;
     }
 }
